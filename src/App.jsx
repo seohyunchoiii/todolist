@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import TaskForm from './components/TaskForm'
 
 const Container = styled.div`
   display: grid;
   grid-template-rows: 150px auto;
   `
-const Header = styled.div``
 const Main = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -20,7 +20,7 @@ const Column = styled.div`
 const App = () => {
   return (
     <Container>
-      <Header>Header Section</Header>
+      <TaskForm/>
       <Main>
         <Column>Section 1</Column>
         <Column>Section 2</Column>
