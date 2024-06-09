@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import styled from 'styled-components'
 
-function App() {
-  const [count, setCount] = useState(0)
+const Container = styled.div`
+  display: grid;
+  grid-template-rows: 150px auto;
+  `
+const Header = styled.div``
+const Main = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px 8%;
+`
+const Column = styled.div`
+  width: 33.33%;
+  background-color: tomato;
+  margin: 20px;
+`
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Container>
+      <Header>Header Section</Header>
+      <Main>
+        <Column>Section 1</Column>
+        <Column>Section 2</Column>
+        <Column>Section 3</Column>
+      </Main>
+    </Container>
   )
 }
 
