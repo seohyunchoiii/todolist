@@ -33,6 +33,9 @@ const Bottom = styled.div`
   justify-content: space-between;
 `
 
+const ButtonsWrapper = styled.div`
+  display: flex;
+`
 const Options =[
   {value:'todo', name:'To do'},
   {value:'doing', name: 'Doing'},
@@ -90,12 +93,12 @@ const TaskForm = () => {
             placeholder = 'Enter your task'
           />
           <Bottom>
-            <div>
-            <Buttons name="HTML"/>
-            <Buttons name="CSS"/>
-            <Buttons name="JavaScript"/>
-            <Buttons name="React"/>
-            </div>
+            <ButtonsWrapper>
+              <Buttons name="HTML"/>
+              <Buttons name="CSS"/>
+              <Buttons name="JavaScript"/>
+              <Buttons name="React"/>
+            </ButtonsWrapper>
             
             <div>
             <SelectBox
