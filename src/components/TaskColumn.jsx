@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import TaskCard from './TaskCard'
 
 const Container = styled.div`
 `
@@ -18,6 +19,7 @@ const TaskColumn = ({title, icon}) => {
       <Heading>
         <Icon src={icon} alt=''/>{title}
       </Heading>
+      <TaskCard/>
     </Container>
 
   )
