@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Buttons from './Buttons'
 
@@ -36,11 +36,6 @@ const Bottom = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
 `
-const Options =[
-  {value:'todo', name:'To do'},
-  {value:'doing', name: 'Doing'},
-  {value:'done', name: 'Done'},
-];
 
 const Select = styled.select`
   font-size: 16px;
@@ -52,23 +47,6 @@ const Select = styled.select`
   padding: 0 5px;
 `
 
-/* eslint-disable react/prop-types */
-const SelectBox = (props) =>{
-  const handleChange = (e) => {
-    console.log(e.target.value);
-  };
-  return (
-    <Select onChange={handleChange}>
-      {props.options.map((option) => (
-        <option
-            key={option.value}
-            value={option.value}>
-          {option.name}
-        </option>
-      ))}
-    </Select>
-  );
-};
 const Submit = styled.button`
   font-size: 16px;
   font-weight: 500;
@@ -83,6 +61,16 @@ const Submit = styled.button`
 `
 
 const TaskForm = () => {
+  const [task, setTask] = useState("");
+  const [status, setStatus] = useState("todo");
+  
+  const handleTaskChange = e => {
+    setTask(e.target.value);
+  }
+  const handleChange = (e) => {
+    setStatus(e.target.value);
+  };
+  console.log(task, status);
   return (
     <Container>
       <Header/>
@@ -91,6 +79,7 @@ const TaskForm = () => {
             type= "text"
             name = "task_input"
             placeholder = 'Enter your task'
+            onChange={(e) => handleTaskChange(e)}
           />
           <Bottom>
             <ButtonsWrapper>
@@ -101,9 +90,11 @@ const TaskForm = () => {
             </ButtonsWrapper>
             
             <div>
-            <SelectBox
-              options = {Options}
-              />
+            <Select onChange = {handleChange}>
+              <option value='todo'> To do </option>
+              <option value='doing'> Doing </option>
+              <option value='done'> Done </option>
+            </Select>
             <Submit>
               + Add Task
             </Submit>
