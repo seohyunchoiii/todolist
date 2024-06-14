@@ -61,25 +61,46 @@ const Submit = styled.button`
 `
 
 const TaskForm = () => {
-  const [task, setTask] = useState("");
-  const [status, setStatus] = useState("todo");
-  
-  const handleTaskChange = e => {
-    setTask(e.target.value);
-  }
+  const [taskData, setTaskData] = useState({
+    task: "",
+    status: "todo"
+  })
+
   const handleChange = (e) => {
-    setStatus(e.target.value);
+    const {name, value} = e.target
+
+    setTaskData((prev) => {
+      return {...prev, [name]: value}
+    })
   };
-  console.log(task, status);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(taskData)
+  }
+
+  
+  // const [task, setTask] = useState("");
+  // const [status, setStatus] = useState("todo");
+  
+  // const handleTaskChange = (e) => {
+  //   setTask(e.target.value);
+  // }
+  // const handleChange = (e) => {
+  //   setStatus(e.target.value);
+  // };
+  // console.log(task, status);
+
   return (
     <Container>
       <Header/>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Input
             type= "text"
-            name = "task_input"
+            name="task"
+            // className = "task_input"
             placeholder = 'Enter your task'
-            onChange={(e) => handleTaskChange(e)}
+            onChange={handleChange}
           />
           <Bottom>
             <ButtonsWrapper>
@@ -90,14 +111,17 @@ const TaskForm = () => {
             </ButtonsWrapper>
             
             <div>
-            <Select onChange = {handleChange}>
-              <option value='todo'> To do </option>
-              <option value='doing'> Doing </option>
-              <option value='done'> Done </option>
-            </Select>
-            <Submit>
-              + Add Task
-            </Submit>
+              <Select 
+                name="status"
+                // className='task_status'
+                onChange = {handleChange}>
+                <option value='todo'> To do </option>
+                <option value='doing'> Doing </option>
+                <option value='done'> Done </option>
+              </Select>
+              <Submit>
+                + Add Task
+              </Submit>
             </div>
           </Bottom>
         </Form>
