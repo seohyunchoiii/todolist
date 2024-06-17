@@ -63,8 +63,25 @@ const Submit = styled.button`
 const TaskForm = () => {
   const [taskData, setTaskData] = useState({
     task: "",
-    status: "todo"
+    status: "todo",
+    buttons: []
   })
+
+  const selectButton = (a) => {
+    if(taskData.buttons.some(item => item === a)) {
+      const filterButtons = taskData.buttons.filter(item => item !== a)
+      setTaskData(prev => {
+        return {...prev, buttons: filterButtons}
+      })
+    }
+    else {
+      setTaskData(prev => {
+        return {...prev, buttons: [...prev.buttons, a]}
+      })
+    }
+  };
+
+  console.log(taskData.buttons)
 
   const handleChange = (e) => {
     const {name, value} = e.target
@@ -79,18 +96,6 @@ const TaskForm = () => {
     console.log(taskData)
   }
 
-  
-  // const [task, setTask] = useState("");
-  // const [status, setStatus] = useState("todo");
-  
-  // const handleTaskChange = (e) => {
-  //   setTask(e.target.value);
-  // }
-  // const handleChange = (e) => {
-  //   setStatus(e.target.value);
-  // };
-  // console.log(task, status);
-
   return (
     <Container>
       <Header/>
@@ -104,10 +109,10 @@ const TaskForm = () => {
           />
           <Bottom>
             <ButtonsWrapper>
-              <Buttons name="HTML"/>
-              <Buttons name="CSS"/>
-              <Buttons name="JavaScript"/>
-              <Buttons name="React"/>
+              <Buttons name="HTML" selectButton={selectButton}/>
+              <Buttons name="CSS" selectButton={selectButton}/>
+              <Buttons name="JavaScript" selectButton={selectButton}/>
+              <Buttons name="React" selectButton={selectButton}/>
             </ButtonsWrapper>
             
             <div>

@@ -13,10 +13,10 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-const Buttons = (props) => {
+const Buttons = ({name, selectButton}) => {
   return (
     <Container>
-      <Button name>{props.name}</Button>
+      <Button type="button" onClick={ () => selectButton(name)}>{name}</Button>
     </Container>
   )
 }
