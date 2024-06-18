@@ -67,6 +67,10 @@ const TaskForm = () => {
     buttons: []
   })
 
+  const checkButton = (a) => {
+    return taskData.buttons.some(item => item === a)
+  }
+
   const selectButton = (a) => {
     if(taskData.buttons.some(item => item === a)) {
       const filterButtons = taskData.buttons.filter(item => item !== a)
@@ -109,10 +113,10 @@ const TaskForm = () => {
           />
           <Bottom>
             <ButtonsWrapper>
-              <Buttons name="HTML" selectButton={selectButton}/>
-              <Buttons name="CSS" selectButton={selectButton}/>
-              <Buttons name="JavaScript" selectButton={selectButton}/>
-              <Buttons name="React" selectButton={selectButton}/>
+              <Buttons name="HTML" selectButton={selectButton} selected={checkButton("HTML")}/>
+              <Buttons name="CSS" selectButton={selectButton} selected={checkButton("CSS")}/>
+              <Buttons name="JavaScript" selectButton={selectButton} selected={checkButton("JavaScript")}/>
+              <Buttons name="React" selectButton={selectButton} selected={checkButton("React")}/>
             </ButtonsWrapper>
             
             <div>

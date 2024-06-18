@@ -13,10 +13,22 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-const Buttons = ({name, selectButton}) => {
+const Buttons = ({name, selectButton, selected}) => {
+  const buttonStyle = {
+    HTML: {backgroundColor: "#fda821"},
+    CSS: {backgroundColor: "#15d4c8"},
+    JavaScript: {backgroundColor: "#ffd12c"},
+    React: {backgroundColor: "#4cdafc"},
+    default: {backgroundColor: "#f9f9f9"},
+  }
   return (
     <Container>
-      <Button type="button" onClick={ () => selectButton(name)}>{name}</Button>
+      <Button
+        type="button"
+        style={selected ? buttonStyle[name] : buttonStyle.default}
+        onClick={ () => selectButton(name)}>
+        {name}
+      </Button>
     </Container>
   )
 }
