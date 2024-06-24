@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Buttons from './Buttons'
 import deleteIcon from '../assets/delete.png'
 
+
 const Container = styled.div``
 const Card = styled.article`
   width: 100%;
@@ -48,15 +49,20 @@ const Icon = styled.img`
   transition: all 0.3s ease-in-out;
 `
 
-const TaskCard = () => {
+const TaskCard = ({title, tags}) => {
+  console.log('title',title)
+
+  console.log('tags',tags)
   return (
     <Container>
       <Card>
-        <Text>This is Sample Text.</Text>
+        <Text>{title}</Text>
         <Bottom>
           <Tags>
-            <Buttons name="HTML"/>
-            <Buttons name="CSS"/>
+            {
+              tags.map((tag, index) => (
+              <Buttons key={index} name={tag} selected/>
+            ))}
           </Tags>
           <Delete>
             <Icon src={deleteIcon} alt=""/>
@@ -66,5 +72,10 @@ const TaskCard = () => {
     </Container>
   )
 }
+
+// TaskCard.propTypes = {
+//   title: PropTypes.string,
+//   tags: PropTypes.array,
+// }
 
 export default TaskCard

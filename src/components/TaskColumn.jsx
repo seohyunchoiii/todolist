@@ -13,16 +13,36 @@ const Icon = styled.img`
   margin-right: 30px;
 `
 
-const TaskColumn = ({title, icon}) => {
+
+const TaskColumn = ({title, icon, tasks, status}) => {
+  // console.log('title',title)
   return (
     <Container>
       <Heading>
         <Icon src={icon} alt=''/>{title}
       </Heading>
-      <TaskCard/>
+      {
+        tasks.map((task, index) => {
+          return (
+            task.status === status && (
+              <TaskCard
+                key={index}
+                title={task.task}
+                tags={task.buttons}
+                />)
+          )
+        }
+      )}
+      {/* <TaskCard/> */}
     </Container>
 
   )
 }
+
+// TaskColumn.propTypes = {
+//   title: PropTypes.string,
+//   tasks: PropTypes.array,
+//   status: PropTypes.string,
+// };
 
 export default TaskColumn

@@ -60,7 +60,7 @@ const Submit = styled.button`
   cursor: pointer;
 `
 
-const TaskForm = () => {
+const TaskForm = ({setTasks}) => {
   const [taskData, setTaskData] = useState({
     task: "",
     status: "todo",
@@ -85,8 +85,6 @@ const TaskForm = () => {
     }
   };
 
-  console.log(taskData.buttons)
-
   const handleChange = (e) => {
     const {name, value} = e.target
 
@@ -97,7 +95,10 @@ const TaskForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(taskData)
+    console.log(taskData);
+    setTasks(prev => {
+      return [...prev, taskData];
+    })
   }
 
   return (

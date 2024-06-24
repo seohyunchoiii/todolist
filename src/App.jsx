@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import TaskForm from './components/TaskForm'
 import TaskColumn from './components/TaskColumn'
@@ -21,13 +21,15 @@ const Column = styled.div`
 `
 
 const App = () => {
+  const [tasks, setTasks] = useState([]);
+  console.log("tasks", tasks);
   return (
     <Container>
-      <TaskForm/>
+      <TaskForm setTasks={setTasks}/>
       <Main>
-        <Column><TaskColumn title="To do" icon={todoIcon}/></Column>
-        <Column><TaskColumn title="Doing" icon={doingIcon}/></Column>
-        <Column><TaskColumn title="Done" icon={doneIcon}/></Column>
+        <Column><TaskColumn title="To do" icon={todoIcon} tasks={tasks} status="todo"/></Column>
+        <Column><TaskColumn title="Doing" icon={doingIcon} tasks={tasks} status="doing"/></Column>
+        <Column><TaskColumn title="Done" icon={doneIcon} tasks={tasks} status="done"/></Column>
       </Main>
     </Container>
   )
