@@ -22,14 +22,18 @@ const Column = styled.div`
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const handleDelete = (taskIndex) => {
+    const newTasks = tasks.filter((task, index) => index !== taskIndex)
+    setTasks(newTasks)
+  }
   console.log("tasks", tasks);
   return (
     <Container>
       <TaskForm setTasks={setTasks}/>
       <Main>
-        <Column><TaskColumn title="To do" icon={todoIcon} tasks={tasks} status="todo"/></Column>
-        <Column><TaskColumn title="Doing" icon={doingIcon} tasks={tasks} status="doing"/></Column>
-        <Column><TaskColumn title="Done" icon={doneIcon} tasks={tasks} status="done"/></Column>
+        <Column><TaskColumn title="To do" handleDelete={handleDelete} icon={todoIcon} tasks={tasks} status="todo"/></Column>
+        <Column><TaskColumn title="Doing" handleDelete={handleDelete} icon={doingIcon} tasks={tasks} status="doing"/></Column>
+        <Column><TaskColumn title="Done" handleDelete={handleDelete} icon={doneIcon} tasks={tasks} status="done"/></Column>
       </Main>
     </Container>
   )

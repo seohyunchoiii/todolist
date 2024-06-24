@@ -14,7 +14,7 @@ const Icon = styled.img`
 `
 
 
-const TaskColumn = ({title, icon, tasks, status}) => {
+const TaskColumn = ({title, icon, tasks, status, handleDelete}) => {
   // console.log('title',title)
   return (
     <Container>
@@ -23,12 +23,15 @@ const TaskColumn = ({title, icon, tasks, status}) => {
       </Heading>
       {
         tasks.map((task, index) => {
+
           return (
             task.status === status && (
               <TaskCard
                 key={index}
                 title={task.task}
                 tags={task.buttons}
+                handleDelete={handleDelete}
+                index={index}
                 />)
           )
         }

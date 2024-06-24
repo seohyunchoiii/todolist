@@ -49,7 +49,7 @@ const Icon = styled.img`
   transition: all 0.3s ease-in-out;
 `
 
-const TaskCard = ({title, tags}) => {
+const TaskCard = ({title, tags, handleDelete, index}) => {
   console.log('title',title)
 
   console.log('tags',tags)
@@ -64,7 +64,7 @@ const TaskCard = ({title, tags}) => {
               <Buttons key={index} name={tag} selected/>
             ))}
           </Tags>
-          <Delete>
+          <Delete onClick={() => handleDelete(index)}>
             <Icon src={deleteIcon} alt=""/>
           </Delete>
         </Bottom>
